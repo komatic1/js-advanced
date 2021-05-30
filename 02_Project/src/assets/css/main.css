@@ -1278,9 +1278,21 @@ h4 {
   transform: translateX(-50%) !important;
   padding: 3rem 6rem 4rem 6rem;
 }
-
 .status {
   text-align: center;
+}
+.pageup{
+	background-color:#fff;
+  border:1px solid white;
+  bottom:100px;
+  cursor:pointer;
+	opacity:0;
+	position:fixed;
+	right:5%;
+	transition:1s all;
+	height:26px;
+	width:26px;
+	z-index:30;
 }
 
 @media (max-width: 1399px) {
