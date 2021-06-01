@@ -3,6 +3,8 @@ import MainSlider from './modules/slider/slider-main';
 import MiniSlider from './modules/slider/slider-mini';
 import Difference from './modules/difference';
 //import Form from './modules/forms';
+import showInfo from './modules/showInfo';
+import ShowInfo from './modules/showInfo';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
@@ -45,4 +47,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const bigSlider = new MainSlider({container: '.moduleapp', btns: '.next'});
     bigSlider.render();
+
+    new ShowInfo('.plus__content').init();
 });
