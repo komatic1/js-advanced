@@ -5,6 +5,7 @@ import Difference from './modules/difference';
 //import Form from './modules/forms';
 import showInfo from './modules/showInfo';
 import ShowInfo from './modules/showInfo';
+import Download from './modules/download';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
@@ -49,4 +50,6 @@ window.addEventListener('DOMContentLoaded', () => {
     bigSlider.render();
 
     new ShowInfo('.plus__content').init();
+
+    new Download('.download').init();
 });
