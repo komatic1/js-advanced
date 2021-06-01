@@ -42,4 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Difference('.officerold', '.officernew', '.officer__card-item').init();
 
     //new Form('.form').init();
+
+    const bigSlider = new MainSlider({container: '.moduleapp', btns: '.next'});
+    bigSlider.render();
 });

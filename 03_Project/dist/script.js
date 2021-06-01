@@ -2803,6 +2803,12 @@ window.addEventListener('DOMContentLoaded', function () {
   feedSlider.init(); // alternative call style
 
   new _modules_difference__WEBPACK_IMPORTED_MODULE_3__["default"]('.officerold', '.officernew', '.officer__card-item').init(); //new Form('.form').init();
+
+  var bigSlider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    container: '.moduleapp',
+    btns: '.next'
+  });
+  bigSlider.render();
 });
 
 /***/ }),
@@ -3114,28 +3120,51 @@ function (_Slider) {
       this.showSlides(this.slideIndex += n);
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "bindTriggers",
+    value: function bindTriggers() {
       var _this2 = this;
 
-      try {
+      this.btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          _this2.plusSlides(1);
+        });
+        btn.parentNode.previousElementSibling.addEventListener('click', function (e) {
+          e.preventDefault();
+          _this2.slideIndex = 1;
+
+          _this2.showSlides(_this2.slideIndex);
+        });
+      });
+      document.querySelectorAll('.prevmodule').forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+
+          _this2.plusSlides(-1);
+        });
+      }); // here was upgoing event on .next class
+
+      document.querySelectorAll('.nextmodule').forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.stopPropagation(); // disable upgoing on .next
+
+          e.preventDefault();
+
+          _this2.plusSlides(1);
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.container) {
         try {
           this.hanson = document.querySelector('.hanson');
         } catch (e) {}
 
-        this.btns.forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            _this2.plusSlides(1);
-          });
-          btn.parentNode.previousElementSibling.addEventListener('click', function (e) {
-            e.preventDefault();
-            _this2.slideIndex = 1;
-
-            _this2.showSlides(_this2.slideIndex);
-          });
-        });
         this.showSlides(this.slideIndex);
-      } catch (e) {}
+        this.bindTriggers();
+      }
     }
   }]);
 
