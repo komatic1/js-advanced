@@ -2767,6 +2767,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //import Form from './modules/forms';
 
 window.addEventListener('DOMContentLoaded', function () {
   var slider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -2801,7 +2802,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
   feedSlider.init(); // alternative call style
 
-  new _modules_difference__WEBPACK_IMPORTED_MODULE_3__["default"]('.officerold', '.officernew', '.officer__card-item').init();
+  new _modules_difference__WEBPACK_IMPORTED_MODULE_3__["default"]('.officerold', '.officernew', '.officer__card-item').init(); //new Form('.form').init();
 });
 
 /***/ }),
