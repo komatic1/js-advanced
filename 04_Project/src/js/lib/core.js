@@ -8,6 +8,13 @@ $.prototype.init = function(selector) {
     if (!selector) {
         return this; // {} :: it is link to the new object - empty
     }
+    // let's check - do we have an element (node)?
+    if (selector.tagName) {
+        this[0] = selector; // if selector is a tag we put it to the object on the first (0 offset) position
+        this.length = 1;
+        return this;
+    }
+
     Object.assign(this, document.querySelectorAll(selector));
     this.length = document.querySelectorAll(selector).length;
 

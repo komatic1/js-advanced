@@ -2,3 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+
+button {
+  background-color: blue;
+  text-align: center;
+  height: 40px;
+  width: 150px; }
+
+.active {
+  color: red;
+  font-size: 20px; }
