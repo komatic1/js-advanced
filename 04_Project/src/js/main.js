@@ -1,6 +1,19 @@
 import './lib/lib';
 import $ from './lib/lib';
 
+$('#first').on('click', () => {
+    $('div').eq(1).fadeOut(800);
+});
+
+$('[data-count="second"]').on('click', () => {
+    $('div').eq(2).fadeOut(800);
+});
+
+$('button').eq(2).on('click', () => {
+    $('.w-500').fadeOut(800);
+});
+
+
 /*$('button').click(function () {
     $(this).toggleClass('active'); // now this - is a HTML element (where is event) so we have
     // to change core.js lines from 7 (where we exactly wait for a selector but not for HTML document)
@@ -18,4 +31,4 @@ $('div').click(function() {
 
 //console.log($('div').eq(2).find('.more'));
 //console.log($('.some').closest('.findme'));
-$('.findme').fadeIn(1800);
+//$('.findme').fadeIn(1800);
