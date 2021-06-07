@@ -208,6 +208,36 @@
     .tab-content-active {
       display: block; }
 
+.accordion {
+  max-width: 700px; }
+  .accordion-head {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #343a40;
+    cursor: pointer;
+    display: flex;
+    font-size: 18px;
+    padding: 0 20px;
+    min-height: 50px;
+    width: 100%; }
+    .accordion-head-active {
+      color: #025fff; }
+  .accordion-content {
+    background-color: #fff;
+    border: 1px solid #e0d3d3;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0px;
+    transition: opacity 0.5s, max-height 0.6s, padding 0.1s; }
+    .accordion-content-active {
+      overflow: visible;
+      opacity: 1; }
+  .accordion-inner {
+    display: block;
+    padding: 20px; }
+
 .text-center {
   text-align: center; }
 
