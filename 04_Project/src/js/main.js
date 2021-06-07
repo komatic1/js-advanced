@@ -13,6 +13,23 @@ $('button').eq(2).on('click', () => {
     $('.w-500').fadeToggle(800);
 });
 
+$('#trigger').click(() => $('#trigger').createModal({
+    text: {
+        title: 'Modal title from pro',
+        body: 'Just simple text for the pro modal.'
+    },
+    btns: {
+        count: 2,
+        settings: [
+            [
+                'Close', ['btn-danger', 'mr-10'], true
+            ],
+            [
+                'Save changes', ['btn-success'], false, () => { alert('Data saved!'); }
+            ]
+        ]
+    }
+}));
 
 /*$('button').click(function () {
     $(this).toggleClass('active'); // now this - is a HTML element (where is event) so we have
