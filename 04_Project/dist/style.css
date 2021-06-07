@@ -238,6 +238,75 @@
     display: block;
     padding: 20px; }
 
+.carousel {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  width: 900px; }
+  .carousel-indicators {
+    bottom: 0;
+    display: flex;
+    margin-right: 15%;
+    margin-left: 15%;
+    left: 0;
+    list-style: none;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    z-index: 15; }
+    .carousel-indicators li {
+      background-color: #fff;
+      background-clip: padding-box;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      box-sizing: content-box;
+      cursor: pointer;
+      margin-right: 3px;
+      margin-left: 3px;
+      opacity: 0.5;
+      flex: 0 1 auto;
+      height: 6px;
+      transition: opacity .6s ease;
+      width: 30px; }
+    .carousel-indicators .active {
+      opacity: 1; }
+  .carousel-inner {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    width: 100%; }
+  .carousel-slides {
+    display: flex;
+    height: 100%; }
+  .carousel-item {
+    height: 100%; }
+    .carousel-item img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%; }
+  .carousel-prev, .carousel-next {
+    align-items: center;
+    bottom: 0;
+    color: #fff;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    top: 0;
+    opacity: .5;
+    font-size: 40px;
+    width: 15%;
+    z-index: 1; }
+    .carousel-prev:hover, .carousel-next:hover {
+      background-color: rbga(0, 0, 0, 0.2);
+      opacity: .9; }
+  .carousel-prev {
+    left: 0; }
+  .carousel-next {
+    right: 0; }
+
 .text-center {
   text-align: center; }
 
