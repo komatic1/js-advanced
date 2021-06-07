@@ -1,6 +1,7 @@
-import './lib/lib';
+//import './lib/lib';
 import $ from './lib/lib';
 
+/*
 $('#first').on('click', () => {
     $('div').eq(1).fadeToggle(800);
 });
@@ -34,6 +35,7 @@ $('#trigger').click(() => $('#trigger').createModal({
 
 $().get('https://jsonplaceholder.typicode.com/todos/1')
     .then(res => console.log(res));
+    */
 
 
 
