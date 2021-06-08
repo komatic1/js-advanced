@@ -2,29 +2,32 @@ export default class Customizator {
     constructor() {
         this.btnBlock = document.createElement('div');
         this.colorPicker = document.createElement('input');
+        this.clear = document.createElement('div');
+        this.scale = localStorage.getItem('scale') || 1;
+        this.color = localStorage.getItem('color') || '#ffffff';
 
         this.btnBlock.addEventListener('click', (e) => this.onScaleChange(e));
         this.colorPicker.addEventListener('input', (e) => this.onColorChange(e));
+        this.clear.addEventListener('click', () => this.reset());
     }
 
     onScaleChange(e) {
-        let scale;
         const body = document.querySelector('body');
 
-        if (e.target.value) {
-            scale = +e.target.value.replace(/x/g, '');
+        if (e) {
+            this.scale = +e.target.value.replace(/x/g, '');
         }
 
-        function recursy(element) {
+        const recursy = (element) => { // we change function to => because of context THIS - to do not lost it
             element.childNodes.forEach(node => {
                 if (node.nodeName === '#text' && node.nodeValue.replace(/\s+/g, '').length > 0) {
                     // check saved attribute
                     if (!node.parentNode.dataset.fz) {
                         let value = window.getComputedStyle(node.parentNode, null).fontSize; // get font-size for each element
                         node.parentNode.setAttribute('data-fz', +value.replace(/px/g, ''));
-                        node.parentNode.style.fontSize = +node.parentNode.dataset.fz * scale + 'px';
+                        node.parentNode.style.fontSize = +node.parentNode.dataset.fz * this.scale + 'px';
                     } else {
-                        node.parentNode.style.fontSize = +node.parentNode.dataset.fz * scale + 'px';
+                        node.parentNode.style.fontSize = +node.parentNode.dataset.fz * this.scale + 'px';
                     }                    
                 } else {
                     recursy(node);
@@ -33,19 +36,34 @@ export default class Customizator {
         }
 
         recursy(body);
+
+        localStorage.setItem('scale', this.scale);
     }
 
     onColorChange(e) {
         const body = document.querySelector('body');
         body.style.backgroundColor = e.target.value;
+        localStorage.setItem('color', e.target.value);
+    }
+
+    setBgColor() {
+        const body = document.querySelector('body');
+        body.style.backgroundColor = this.color; // get from constructor -> get from localStorage
+        this.colorPicker.value = this.color; // change input
     }
 
     render() {
+        this.onScaleChange();
+        this.injectStyle();
+        this.setBgColor();
+
         let scaleInputS = document.createElement('input'),
             scaleInputM = document.createElement('input'),
             panel = document.createElement('div');
         
-        panel.append(this.btnBlock, this.colorPicker);
+        panel.append(this.btnBlock, this.colorPicker, this.clear);
+        this.clear.innerHTML = "&times;";
+        this.clear.classList.add('clear');
 
         scaleInputS.classList.add('scale_btn');
         scaleInputM.classList.add('scale_btn');
@@ -64,5 +82,60 @@ export default class Customizator {
         panel.classList.add('panel');
         document.querySelector('body').append(panel);
         //console.log(panel);
+    }
+
+    injectStyle() {
+        const style = document.createElement('style');
+        style.innerHTML = `
+        .panel {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            top: 10px;
+            right: 0;
+            border: 1px solid rgba(0,0,0, .2);
+            box-shadow: 0 0 20px rgba(0,0,0, .5);
+            width: 300px;
+            height: 60px;
+            background-color: #fff;
+        }
+
+        .scale {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100px;
+            height: 40px;
+        }
+        .scale_btn {
+                display: block;
+                width: 40px;
+                height: 40px;
+                border: 1px solid rgba(0,0,0, .2);
+                border-radius: 4px;
+                font-size: 18px;
+            }
+
+        .color {
+            width: 40px;
+            height: 40px;
+        }
+
+        .clear {
+            cursor:pointer;
+            font-size:20px;
+        }
+        `;
+
+        document.querySelector('head').appendChild(style);
+    }
+
+    reset() {
+        localStorage.clear();
+        this.scale = 1;
+        this.color = '#ffffff';
+        this.setBgColor();
+        this.onScaleChange();
     }
 }
